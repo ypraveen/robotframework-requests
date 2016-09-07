@@ -3,7 +3,11 @@
 from distutils.core import setup
 
 from os.path import abspath, dirname, join
-execfile(join(dirname(abspath(__file__)), 'src', 'RequestsLibrary', 'version.py'))
+
+version_fname = join(dirname(abspath(__file__)), 'src', 'RequestsLibrary', 'version.py')
+with open(version_fname, "r") as f:
+    code = compile(f.read(), version_fname, 'exec')
+    exec(code)
 
 DESCRIPTION = """
 Robot Framework keyword library wrapper around the HTTP client library requests.
